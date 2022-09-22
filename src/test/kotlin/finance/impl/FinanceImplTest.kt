@@ -36,7 +36,7 @@ class FinanceImplTest {
     @ParameterizedTest
     @ValueSource(ints = [1,4,6,12,52,365])
     fun `test compound interest calculation`(compounding: Int){
-        val result = financeImpl.compoundInterest(9.4,compounding,100000.00,1)
+        val result = financeImpl.compoundInterest(9.4,compounding,100665.83,1)
 
         when(compounding){
             1->{
