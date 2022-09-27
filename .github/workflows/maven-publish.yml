@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         distribution: ['corretto']
-        java: [ '8', '11']
+        java: ['8']
         os: [ 'ubuntu-latest', 'macos-latest', 'windows-latest' ]
     name: Java ${{ matrix.Java }} (${{ matrix.distribution }}) sample
     permissions:
@@ -40,6 +40,10 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn clean package -DattachMuleSources -Pgithub deploy
       env:
         GITHUB_TOKEN: ${{secrets.GH_TOKEN_PACKAGING}}
+        OWNER: ${{secrets.GH_USERNAME}}
+      run: |
+        mkdir ~/.m2
+        echo "<settings><servers><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+        mvn deploy
