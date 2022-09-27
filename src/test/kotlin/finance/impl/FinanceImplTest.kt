@@ -60,4 +60,11 @@ class FinanceImplTest {
         }
         assert(result > 0)
     }
+
+    @ParameterizedTest
+    @ValueSource(doubles = [1.00,2.50,3.9,4.8,5.5,6.6,7.8,8.0])
+    fun `test compound growth rate` (timeInYears:Double) {
+        val results = financeImpl.compoundAnnualGrowthRate(20000.00,50000.00, timeInYears)
+        assert(results > 0)
+    }
 }

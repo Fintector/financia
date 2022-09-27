@@ -18,6 +18,14 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Mfuon Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Fintector/financia</url>
+        </repository>
+    </distributionManagement>
+
 
     <repositories>
         <repository>

@@ -59,10 +59,24 @@ class FinanceImpl : Finance {
      * n = 4 : quarterly
      * @param p principal present value
      * @param t time period
-     * @return
+     * @return double compound interest
      */
     override fun compoundInterest(r:Double, n: Int, p: Double, t:Int): Double {
         val ci = p * Math.pow((1 + (r/100/ n)), (n * t).toDouble())
         return (ci * 100/ 100).toBigDecimal().setScale(2, RoundingMode.UP).toDouble()
+    }
+
+
+    /**
+     * Compound annual growth rate
+     *
+     * @param initialValue
+     * @param endingValue
+     * @param timeInYears
+     * @return double compound annual growth rate
+     */
+    override fun compoundAnnualGrowthRate(initialValue: Double, endingValue: Double, timeInYears: Double): Double {
+        val ca = Math.pow((endingValue/initialValue),1/timeInYears) - 1
+        return ca * 100
     }
 }
