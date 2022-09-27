@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distribution: [ 'zulu', 'temurin','microsoft','corretto','adopt-hotspot', ]
-        java: [ '8', '11','14', '17']
+        distribution: ['corretto']
+        java: [ '8', '11']
         os: [ 'ubuntu-latest', 'macos-latest', 'windows-latest' ]
     name: Java ${{ matrix.Java }} (${{ matrix.distribution }}) sample
     permissions:
