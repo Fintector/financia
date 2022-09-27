@@ -42,4 +42,4 @@ jobs:
     - name: Publish to GitHub Packages Apache Maven
       run: mvn clean package -DattachMuleSources -Pgithub deploy
       env:
-        GITHUB_TOKEN: ${{GH_TOKEN_PACKAGING}}
+        GH_TOKEN_PACKAGING: ${{GH_TOKEN_PACKAGING}}
