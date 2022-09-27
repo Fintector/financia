@@ -44,6 +44,5 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GH_TOKEN_PACKAGING}}
         OWNER: ${{secrets.GH_USERNAME}}
       run: |
-        mkdir ~/.m2
         echo "<settings><servers><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
         mvn deploy
