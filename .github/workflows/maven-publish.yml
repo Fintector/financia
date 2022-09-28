@@ -26,6 +26,7 @@ jobs:
       packages: write
 
     steps:
+    - uses: actions/checkout@v3
     - name: Set up Java for publishing to Maven Central Repository
       uses: actions/setup-java@v3
       with:
@@ -34,6 +35,8 @@ jobs:
        server-id: ossrh
        server-username: ${{secrets.OSSRH_USERNAME}}
        server-password: ${{secrets.OSSRH_TOKEN}}
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
     - name: Publish to the Maven Central Repository
       run: |
         echo "<settings><servers><server><id>ossrh</id><username>mfuon</username><password>sonatype-Admin123</password></server><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
