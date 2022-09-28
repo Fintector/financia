@@ -26,6 +26,21 @@ jobs:
       packages: write
 
     steps:
+    - name: Set up Java for publishing to Maven Central Repository
+      uses: actions/setup-java@v3
+      with:
+       java-version: '11'
+       distribution: 'adopt'
+       server-id: ossrh
+       server-username: ${{secrets.OSSRH_USERNAME}}
+       server-password: ${{secrets.OSSRH_TOKEN}}
+    - name: Publish to the Maven Central Repository
+      run: |
+        echo "<settings><servers><server><id>ossrh</id><username>mfuon</username><password>sonatype-Admin123</password></server><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+        mvn --batch-mode deploy
+      env:
+       MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+       MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
     - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v3
