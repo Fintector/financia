@@ -39,8 +39,8 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Publish to the Maven Central Repository
       run: |
-        echo "<settings><servers><server><id>ossrh</id><username>${MAVEN_USERNAME}</username><password>${MAVEN_PASSWORD}</password></server><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-        mvn --batch-mode deploy
+        echo "<settings><servers><server><id>ossrh</id><username>${{ secrets.OSSRH_USERNAME }}</username><password>${{ secrets.OSSRH_TOKEN }}</password></server><server><id>github</id><username>${GITHUB_TOKEN}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+        mvn --batch-mode -X deploy
       env:
        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
